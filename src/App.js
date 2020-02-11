@@ -11,9 +11,6 @@ import { TaskListHeader } from "./TaskListHeader";
 import * as TaskFilter from './taskFilter';
 
 export function App() {
-  // const [person, setPerson] = useState('John Doe');
-  // const onChange = val => setPerson(val.currentTarget.value);
-
   //Creation of useState task & setTask
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState(TaskFilter.ALL);
@@ -51,10 +48,6 @@ export function App() {
 
   return (
     <div className="app-container">
-      {/* <div>
-        <input type='text' onChange={onChange}/>
-        <h1>Hello, { person }</h1>
-      </div> */}
       <Reminders />
       <AddTask addTask={addTask}/>
       <TaskListHeader filter={filter} setFilter={setFilter}/>
