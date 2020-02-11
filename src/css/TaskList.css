@@ -1,36 +1,10 @@
-.task-list-container {
-    background: rgba(224, 224, 224, 0.699);
-    border-radius: 5px;;
-}
 
-.task-item-container {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.check-task {
-    text-align: left;
-    color: black;
-}
 
 .task-buttons {
     text-align: right;
     display: flex;
     align-items: center;
     justify-content: space-around;
-}
-
-.task-checkbox {
-    padding-right: 20px;
-    width: 20px;
-    height: 20px;
-}
-
-.task-name-label {
-    font-size: 22px;
-    padding-left: 16px;
 }
 
 .task-name-form {

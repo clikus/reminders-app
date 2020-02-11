@@ -1,6 +1,5 @@
 import React from 'react';
-
-import {styled } from 'styletron-react';
+import { styled } from 'styletron-react';
 
 const AlignCenter = styled('form', {
   textAlign: "center"
