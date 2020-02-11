@@ -1,0 +1,15 @@
+.task-list-header-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.task-label {
+    text-align: left;
+    color: black;
+}
+
+.task-list-flex-item {
+    flex-grow: 1;
+}
