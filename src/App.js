@@ -4,11 +4,21 @@ import './css/AddTask.css';
 import './css/TaskListHeader.css';
 import './css/TaskList.css';
 
-import { AddTask } from "./AddTask";
-import { Reminders } from "./Reminders";
-import { TaskList } from "./TaskList";
-import { TaskListHeader } from "./TaskListHeader";
+import { AddTask } from './AddTask';
+import { Reminders } from './Reminders';
+import { TaskList } from './TaskList';
+import { TaskListHeader } from './TaskListHeader';
+import { styled } from 'styletron-react';
 import * as TaskFilter from './taskFilter';
+
+const AppContainer = styled('div', {
+  textAlign: 'center',
+  margin: 'auto',
+  padding: '50px',
+  width: '60%',
+  backgroundColor: '#ffd082',
+  borderRadius: '25px'
+});
 
 export function App() {
   //Creation of useState task & setTask
@@ -47,11 +57,11 @@ export function App() {
   }
 
   return (
-    <div className="app-container">
+    <AppContainer>
       <Reminders />
       <AddTask addTask={addTask}/>
       <TaskListHeader filter={filter} setFilter={setFilter}/>
       <TaskList tasks={displayingTasks} editTask={editTask} deleteTask={deleteTask} filter={filter}/>
-    </div>
+    </AppContainer>
   );
 }
