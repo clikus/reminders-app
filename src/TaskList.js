@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { TaskItem } from "./TaskItem";
+import { TaskItem } from './TaskItem';
+import { TaskContext } from './TaskContext';
 import { styled } from 'styletron-react';
 
 const TaskContainer = styled('div', {
@@ -8,13 +9,28 @@ const TaskContainer = styled('div', {
     borderRadius: '5px'
 })
 
+
 export function TaskList (props){
-  const { editTask, deleteTask, tasks } = props;
+  const { tasks } = props;
+
+
 
   return (
+    
     <TaskContainer>
-      { tasks.map((task,index) => 
-        <TaskItem key={index} index={index} task={task} editTask={editTask} deleteTask={deleteTask}/>
+      { tasks.map((task,index) => {
+
+        const item = {
+          index: index,
+          task: task,
+        }
+
+        return (
+          <TaskContext.Provider key={index} value={item}>
+            <TaskItem />
+          </TaskContext.Provider>
+        );
+      }
       )}
     </TaskContainer>
   );

@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 
 import { AddTask } from './AddTask';
 import { Reminders } from './Reminders';
+import { TaskActionsContext } from './TaskActionsContext';
 import { TaskList } from './TaskList';
 import { TaskListHeader } from './TaskListHeader';
 import { styled } from 'styletron-react';
@@ -52,12 +53,19 @@ export function App() {
       break;
   }
 
+  const actions = {
+    edit: editTask,
+    delete: deleteTask,
+  };
+
   return (
     <AppContainer>
       <Reminders />
       <AddTask addTask={addTask}/>
       <TaskListHeader filter={filter} setFilter={setFilter}/>
-      <TaskList tasks={displayingTasks} editTask={editTask} deleteTask={deleteTask} filter={filter}/>
+      <TaskActionsContext.Provider value={actions}>
+        <TaskList tasks={displayingTasks}/>
+      </TaskActionsContext.Provider>
     </AppContainer>
   );
 }
