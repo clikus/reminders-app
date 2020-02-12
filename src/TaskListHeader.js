@@ -1,6 +1,21 @@
 import React from "react";
 import * as TaskFilter from './taskFilter';
 
+import { styled } from 'styletron-react';
+
+const TaskListHeaderContainer = styled('div', {
+  padding: '20px',
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center'
+});
+
+const TaskLabel = styled('h2', {
+  textAlign: 'left',
+  color: 'black',
+  flexGrow: '1'
+});
+
 export function TaskListHeader(props) {
 
   const { filter, setFilter } = props;
@@ -11,8 +26,8 @@ export function TaskListHeader(props) {
   }
 
   return (
-    <div className="task-list-header-container">
-      <h2 className="task-label task-list-flex-item">Task List</h2>
+    <TaskListHeaderContainer>
+      <TaskLabel>Task List</TaskLabel>
       <div>
         <form>
           <input type="radio" onChange={onRadioClick} name="ALL" value={TaskFilter.ALL} checked={filter === TaskFilter.ALL}/> All 
@@ -20,6 +35,6 @@ export function TaskListHeader(props) {
           <input type="radio" onChange={onRadioClick} name="TODO" value={TaskFilter.TODO} checked={filter === TaskFilter.TODO}/> To Do
         </form>
       </div>
-    </div>
+    </TaskListHeaderContainer>
   );
 }
