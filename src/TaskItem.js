@@ -11,13 +11,12 @@ const TaskItemContainer = styled('div', {
   alignItems: 'center'
 });
 
-export function TaskItem(props) {
-  const { task, index, editTask, deleteTask } = props;
+export function TaskItem() {
 
   return (
     <TaskItemContainer>
-      <TaskName task={task} index={index} editTask={editTask} />
-      <TaskActions task={task} index={index} editTask={editTask} deleteTask={deleteTask} />
+      <TaskName />
+      <TaskActions />
     </TaskItemContainer>
   );
 }

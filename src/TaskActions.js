@@ -10,12 +10,11 @@ const TaskButtons = styled('div', {
   justifyContent: 'space-around'
 });
 
-export function TaskActions(props){
-  const { task, index, editTask, deleteTask } = props;
+export function TaskActions(){
 
   return (
   <TaskButtons>
-    <EDButtons task={task} index={index} editTask={editTask} deleteTask={deleteTask}/>
+    <EDButtons />
   </TaskButtons>
   );
 }

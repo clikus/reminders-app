@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { styled } from 'styletron-react';
+import { TaskActionsContext } from './TaskActionsContext';
+import { TaskContext } from './TaskContext';
 
 const EDButtonsContainer = styled('div', {
     padding: '20px',
@@ -37,8 +39,10 @@ const DeleteButton = styled('button', {
     borderLeft: 'none'
 });
 
-export function EDButtons (props) {
-    const { index, task, editTask, deleteTask } = props;
+export function EDButtons () {
+    const { index, task } = useContext(TaskContext);
+
+    const actions = useContext(TaskActionsContext);
 
     function onEditButtonClick() {
         const newTask = prompt("Rename task:", task.name);
@@ -49,7 +53,7 @@ export function EDButtons (props) {
             return;
         }
 
-        editTask(index, { name : newTask , place: task.place , isFinished : task.isFinished });
+        actions.edit(index, { name : newTask , place: task.place , isFinished : task.isFinished });
     }
 
     function onEditPlaceClick() {
@@ -61,11 +65,11 @@ export function EDButtons (props) {
             return;
         }
 
-        editTask(index, { name : task.name, place: newPlace , isFinished : task.isFinished });
+        actions.edit(index, { name : task.name, place: newPlace , isFinished : task.isFinished });
     }
 
     function onDeleteButtonClick() {
-        deleteTask(index);
+        actions.delete(index);
     }
 
     return (

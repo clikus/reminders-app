@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { styled } from 'styletron-react';
+import { TaskActionsContext } from './TaskActionsContext';
+import { TaskContext } from './TaskContext';
 
 const TaskNameContainer = styled('div', {
   textAlign: 'left',
@@ -23,11 +25,15 @@ const TaskLabel = styled('label', {
   paddingLeft: '16px'
 });
 
-export function TaskName(props) {
-  const { task, editTask , index} = props;
+
+
+export function TaskName() {
+  const { task, index} = useContext(TaskContext);
+
+  const actions = useContext(TaskActionsContext);
 
   function onToggleCheckbox() {
-    editTask(index, { name:  task.name , place: task.place, isFinished : !task.isFinished});
+    actions.edit(index, { name:  task.name , place: task.place, isFinished : !task.isFinished});
   }
 
   return (
