@@ -1,8 +1,4 @@
 import React,{useState} from 'react';
-import './css/App.css';
-import './css/AddTask.css';
-import './css/TaskListHeader.css';
-import './css/TaskList.css';
 
 import { AddTask } from './AddTask';
 import { Reminders } from './Reminders';
