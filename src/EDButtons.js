@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 
 import { styled } from 'styletron-react';
 import { TaskActionsContext } from './TaskActionsContext';
@@ -44,7 +44,7 @@ export function EDButtons () {
 
     const actions = useContext(TaskActionsContext);
 
-    function onEditButtonClick() {
+    const onEditButtonClick = useCallback(() => {
         const newTask = prompt("Rename task:", task.name);
         const userClickedCancel = newTask === null;
 
@@ -54,9 +54,9 @@ export function EDButtons () {
         }
 
         actions.edit(index, { name : newTask , place: task.place , isFinished : task.isFinished });
-    }
+    }, [actions, index, task]);
 
-    function onEditPlaceClick() {
+    const onEditPlaceClick = useCallback(() => {
         const newPlace = prompt("Rename task:", task.place);
         const userClickedCancel = newPlace === null;
 
@@ -66,11 +66,11 @@ export function EDButtons () {
         }
 
         actions.edit(index, { name : task.name, place: newPlace , isFinished : task.isFinished });
-    }
+    }, [actions, index, task]);
 
-    function onDeleteButtonClick() {
+    const onDeleteButtonClick = useCallback(() => {
         actions.delete(index);
-    }
+    }, [actions, index]);
 
     return (
         <EDButtonsContainer>
