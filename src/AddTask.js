@@ -38,7 +38,6 @@ const AddTaskButton = styled('button', {
 });
 
 export function AddTask (props) {
-
   const { addTask } = props;
 
   const onSubmitButtonClick = useCallback(event => {
