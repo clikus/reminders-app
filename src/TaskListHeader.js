@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import * as TaskFilter from './taskFilter';
 
 import { styled } from 'styletron-react';
@@ -20,10 +20,10 @@ export function TaskListHeader(props) {
 
   const { filter, setFilter } = props;
 
-  function onRadioClick(event) {
+  const onRadioClick = useCallback((event) => {
     const { value } = event.target;
     setFilter(value);
-  }
+  }, [setFilter]);
 
   return (
     <TaskListHeaderContainer>
