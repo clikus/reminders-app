@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { styled } from 'styletron-react';
 
@@ -38,10 +38,9 @@ const AddTaskButton = styled('button', {
 });
 
 export function AddTask (props) {
-
   const { addTask } = props;
 
-  function onSubmitButtonClick (event) {
+  const onSubmitButtonClick = useCallback(event => {
     const newTaskName = event.currentTarget["add-task-input"].value;
     const newPlaceName = event.currentTarget["add-task-place"].value;
     //addTask Object to add Multiple variables ex. name & isChecked
@@ -52,7 +51,7 @@ export function AddTask (props) {
     });
 
     event.preventDefault();
-  }
+  }, [addTask]);
 
   return (
     <AlignCenter onSubmit={onSubmitButtonClick}>

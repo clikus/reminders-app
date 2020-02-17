@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 
 import { styled } from 'styletron-react';
 import { TaskActionsContext } from './TaskActionsContext';
@@ -32,9 +32,9 @@ export function TaskName() {
 
   const actions = useContext(TaskActionsContext);
 
-  function onToggleCheckbox() {
+  const onToggleCheckbox = useCallback(() => {
     actions.edit(index, { name:  task.name , place: task.place, isFinished : !task.isFinished});
-  }
+  }, [actions, index, task]);
 
   return (
     <TaskNameContainer>
