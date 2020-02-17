@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 
 import { AddTask } from './AddTask';
 import { Reminders } from './Reminders';
@@ -38,25 +38,22 @@ export function App() {
     setTasks(newList);
   }, [setTasks, tasks]);
   
-  let displayingTasks;
+  const displayingTasks = useMemo(() => {
+    switch (filter) {
+      case TaskFilter.FINISHED:
+        return tasks.filter(task => task.isFinished);
+      case TaskFilter.TODO:
+        return tasks.filter(task => !task.isFinished);
+      case TaskFilter.ALL:
+      default:
+        return tasks;
+    }
+  }, [tasks, filter]);
 
-  switch (filter) {
-    case TaskFilter.FINISHED:
-      displayingTasks = tasks.filter(task => task.isFinished);
-      break;
-    case TaskFilter.TODO:
-      displayingTasks = tasks.filter(task => !task.isFinished);
-      break;
-    case TaskFilter.ALL:
-    default:
-      displayingTasks = tasks;
-      break;
-  }
-
-  const actions = {
+  const actions = useMemo(() => ({
     edit: editTask,
     delete: deleteTask,
-  };
+  }), [editTask, deleteTask]);
 
   return (
     <AppContainer>
