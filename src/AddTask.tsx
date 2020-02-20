@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 
 import { styled } from 'styletron-react';
+import { Task } from './types';
 
 const AlignCenter = styled('form', {
-  textAlign: "center"
+  textAlign: 'center',
 });
 
 const AddTaskInputTag = styled('input', {
@@ -11,7 +12,7 @@ const AddTaskInputTag = styled('input', {
   padding: '13px',
   borderRadius: '5px',
   width: '500px',
-  border: 'none'
+  border: 'none',
 });
 
 const AddPlaceInputTag = styled('input', {
@@ -19,7 +20,7 @@ const AddPlaceInputTag = styled('input', {
   padding: '13px',
   borderRadius: '5px',
   width: '250px',
-  border: 'none'
+  border: 'none',
 });
 
 const AddTaskButton = styled('button', {
@@ -34,20 +35,22 @@ const AddTaskButton = styled('button', {
   borderWidth: '1px',
   borderColor: 'rgba(0, 252, 105, 0.74)',
   borderRight: 'none',
-  borderLeft: 'none'
+  borderLeft: 'none',
 });
 
-export function AddTask (props) {
-  const { addTask } = props;
+interface AddTaskProps {
+  addTask(newTask: Task): void;
+}
 
-  const onSubmitButtonClick = useCallback(event => {
-    const newTaskName = event.currentTarget["add-task-input"].value;
-    const newPlaceName = event.currentTarget["add-task-place"].value;
-    //addTask Object to add Multiple variables ex. name & isChecked
+export function AddTask({ addTask }: AddTaskProps): JSX.Element {
+  const onSubmitButtonClick = useCallback((event) => {
+    const newTaskName = event.currentTarget['add-task-input'].value;
+    const newPlaceName = event.currentTarget['add-task-place'].value;
+    // addTask Object to add Multiple variables ex. name & isChecked
     addTask({
       name: newTaskName,
       place: newPlaceName,
-      isFinished: false
+      isFinished: false,
     });
 
     event.preventDefault();
@@ -55,10 +58,9 @@ export function AddTask (props) {
 
   return (
     <AlignCenter onSubmit={onSubmitButtonClick}>
-        <AddTaskInputTag type="text" name="add-task-input" placeholder="Remind me to..."/>
-        <AddPlaceInputTag type="text" name="add-task-place" placeholder="Place of task"/>
-        <AddTaskButton><p>Add Task</p></AddTaskButton>
+      <AddTaskInputTag type="text" name="add-task-input" placeholder="Remind me to..." />
+      <AddPlaceInputTag type="text" name="add-task-place" placeholder="Place of task" />
+      <AddTaskButton><p>Add Task</p></AddTaskButton>
     </AlignCenter>
   );
 }
-
