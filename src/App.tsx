@@ -1,12 +1,14 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import * as React from 'react';
+import { useState, useCallback, useMemo } from 'react';
 
+import { styled } from 'styletron-react';
 import { AddTask } from './AddTask';
 import { Reminders } from './Reminders';
 import { TaskActionsContext } from './TaskActionsContext';
 import { TaskList } from './TaskList';
 import { TaskListHeader } from './TaskListHeader';
-import { styled } from 'styletron-react';
-import * as TaskFilter from './taskFilter';
+import { TaskFilter } from './TaskFilter';
+import { Task } from './types';
 
 const AppContainer = styled('div', {
   textAlign: 'center',
@@ -14,36 +16,35 @@ const AppContainer = styled('div', {
   padding: '50px',
   width: '60%',
   backgroundColor: '#ffd082',
-  borderRadius: '25px'
+  borderRadius: '25px',
 });
 
-export function App() {
+export function App(): JSX.Element {
   // Creation of useState task & setTask
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [filter, setFilter] = useState(TaskFilter.ALL);
- 
   // For adding a task to the list of tasks
-  const addTask = useCallback(newTask => {
+  const addTask = useCallback((newTask) => {
     // Deconstruction of newList to add newTask to the beginning of tasks
     setTasks([newTask, ...tasks]);
   }, [setTasks, tasks]);
 
   const editTask = useCallback((taskIndex, newTask) => {
-    const newList = tasks.map((task, index) => taskIndex === index ? newTask: task);
+    const newList = tasks.map((task, index) => (taskIndex === index ? newTask : task));
     setTasks(newList);
   }, [setTasks, tasks]);
 
-  const deleteTask = useCallback(taskIndex => {
-    const newList = tasks.filter((_, index) => taskIndex !== index);
+  const deleteTask = useCallback((taskIndex) => {
+    const newList = tasks.filter((_, index) => (taskIndex !== index));
     setTasks(newList);
   }, [setTasks, tasks]);
-  
+
   const displayingTasks = useMemo(() => {
     switch (filter) {
       case TaskFilter.FINISHED:
-        return tasks.filter(task => task.isFinished);
+        return tasks.filter((task) => task.isFinished);
       case TaskFilter.TODO:
-        return tasks.filter(task => !task.isFinished);
+        return tasks.filter((task) => !task.isFinished);
       case TaskFilter.ALL:
       default:
         return tasks;
@@ -58,10 +59,10 @@ export function App() {
   return (
     <AppContainer>
       <Reminders />
-      <AddTask addTask={addTask}/>
-      <TaskListHeader filter={filter} setFilter={setFilter}/>
+      <AddTask addTask={addTask} />
+      <TaskListHeader filter={filter} setFilter={setFilter} />
       <TaskActionsContext.Provider value={actions}>
-        <TaskList tasks={displayingTasks}/>
+        <TaskList tasks={displayingTasks} />
       </TaskActionsContext.Provider>
     </AppContainer>
   );
