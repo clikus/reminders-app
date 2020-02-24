@@ -11,7 +11,7 @@ const AddTaskInputTag = styled('input', {
   marginRight: '10px',
   padding: '13px',
   borderRadius: '5px',
-  width: '500px',
+  width: '400px',
   border: 'none',
 });
 
@@ -19,7 +19,7 @@ const AddPlaceInputTag = styled('input', {
   marginRight: '10px',
   padding: '13px',
   borderRadius: '5px',
-  width: '250px',
+  width: '200px',
   border: 'none',
 });
 
@@ -27,13 +27,13 @@ const AddTaskButton = styled('button', {
   marginLeft: '10px',
   paddingLeft: '10px',
   paddingRight: '10px',
-  backgroundColor: 'rgba(0, 252, 105, 0.74)',
+  backgroundColor: '#4CAF50',
   color: 'white',
   fontWeight: 'bold',
-  borderadius: '5px',
+  borderRadius: '5px',
   width: '100px',
   borderWidth: '1px',
-  borderColor: 'rgba(0, 252, 105, 0.74)',
+  borderColor: '#4CAF50',
   borderRight: 'none',
   borderLeft: 'none',
 });
