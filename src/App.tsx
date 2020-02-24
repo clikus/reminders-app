@@ -9,13 +9,14 @@ import { TaskList } from './TaskList';
 import { TaskListHeader } from './TaskListHeader';
 import { TaskFilter } from './TaskFilter';
 import { Task } from './types';
+import { AddRandomTask } from './AddRandomTask';
 
 const AppContainer = styled('div', {
   textAlign: 'center',
   margin: 'auto',
   padding: '50px',
   width: '60%',
-  backgroundColor: '#ffd082',
+  backgroundColor: '#EAE7DC',
   borderRadius: '25px',
 });
 
@@ -60,6 +61,7 @@ export function App(): JSX.Element {
     <AppContainer>
       <Reminders />
       <AddTask addTask={addTask} />
+      <AddRandomTask addTask={addTask} />
       <TaskListHeader filter={filter} setFilter={setFilter} />
       <TaskActionsContext.Provider value={actions}>
         <TaskList tasks={displayingTasks} />
